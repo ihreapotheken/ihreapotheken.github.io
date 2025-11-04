@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="appsdk_v2_flutter_plugin API docs, for the Dart programming language.">
+  <title>appsdk_v2_flutter_plugin - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="https://ihreapotheken.de">appsdk_v2_flutter_plugin package</a></li>
+  </ol>
+  <div class="self-name">appsdk_v2_flutter_plugin</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <h1 id="appsdk-flutter-plugin">AppSDK Flutter Plugin</h1>
+<p>Flutter <a href="https://flutter.dev/to/develop-plugins">Plugin</a> project implemented with the ia.de AppSDK services.</p>
+<h2 id="1-general-info">1. General Info</h2>
+<hr>
+<p>The plugin implementation is based on the native AppSDK libraries developed by the ia.de team with Kotlin and Swift.</p>
+<p>These native libraries offer both checkout services as well as view components in order to ensure seamless integration
+with any client setup.</p>
+<p>Public API Reference: TODO</p>
+<h2 id="2-developer-setup">2. Developer Setup</h2>
+<hr>
+<ul>
+<li><a href="https://docs.flutter.dev/get-started/install">Flutter SDK</a> 3.3 and up</li>
+<li><a href="https://dart.dev/get-dart">Dart SDK</a> 3.9.2 and up</li>
+<li><a href="https://docs.flutter.dev/packages-and-plugins/swift-package-manager/for-app-developers">Swift Package Manager</a> Flutter SDK Support</li>
+<li><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens">Github Token</a> for native library access</li>
+</ul>
+<h2 id="3-platform-support">3. Platform Support</h2>
+<hr>
+<p>The library is supported on both of the major mobile operating systems, with constraints noted below:</p>
+<h3 id="android">Android</h3>
+<ul>
+<li>Minimum SDK Version: <code>30</code></li>
+<li>Target SDK Version: <code>36</code></li>
+<li>Kotlin <code>2.1.0</code></li>
+<li>Gradle <code>8.12.3</code></li>
+</ul>
+<h3 id="ios">iOS</h3>
+<ul>
+<li>Minimum iOS Version: <code>15</code></li>
+<li>Xcode: <code>16.0</code></li>
+<li>Swift <code>5.9</code></li>
+</ul>
+<h2 id="4-client-setup">4. Client Setup</h2>
+<hr>
+<p>For official reference, please see
+<a href="https://docs.flutter.dev/packages-and-plugins/using-packages">the Flutter SDK documentation</a>
+on using Flutter plugins.</p>
+<h3 id="41-source-control-access">4.1. Source control access</h3>
+<p>TODO</p>
+<h3 id="42-add-the-package-to-the-pubspecyaml-file">4.2. Add the package to the <code>pubspec.yaml</code> file</h3>
+<p>The library is accessed from Github as in below example:</p>
+<pre class="language-yaml"><code class="language-yaml"># pubspec.yaml
+
+environment:
+  sdk: ^3.9.2
+  flutter: '&gt;=3.3.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  appsdk_v2_flutter_plugin:
+    git:
+      url: https://github.com/ihreapotheken/IA-SDK-Flutter
+      ref: main
+</code></pre>
+<h3 id="43-plugin-usage">4.3. Plugin usage</h3>
+<p>Methods and properties made available as public APIs implemented with the <code>IaSdk</code> object.</p>
+<p>The client setup requires instantiation of this object for usage:</p>
+<pre class="language-dart"><code class="language-dart">import 'package:flutter/material.dart';
+import 'package:appsdk_v2_flutter_plugin/sdk.dart';
+
+void main() {
+  final iaSdkConfig = IaSdkConfiguration(
+    accessKey: 'myAccessKey',
+    clientId: 'myClientId',
+    serverEnvironment: 'myServerEnvironment',
+  );
+  runApp(
+    IaSdk( // Alternatively, place the [IaSdk] wrapper somewhere else in the widget tree.
+      child: ExampleApp(),
+      configuration: ExampleAppConfig.instance.pluginConfig,
+    ),
+  );
+}
+</code></pre>
+<p>In the above example, after specifying the required fields with the <code>IaSdkConfiguration</code>,
+an <code>IaSdk</code> <a href="https://docs.flutter.dev/get-started/fundamentals/widgets">Widget</a>
+is placed in the widget tree in order to be accessed using any available
+<a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a> value:</p>
+<pre class="language-dart"><code class="language-dart">class _ExampleAppState extends State&lt;ExampleApp&gt; {
+  /// Getter method for retrieving of the nearest ancestor object of [IaSdkApi] type.
+  /// 
+  IaSdkApi? get _iaSdk {
+    return IaSdk.of(context);
+  }
+
+  /// Allocate the ia.de runtime resources.
+  /// 
+  Future&lt;void&gt; _initIaSdk() async {
+    await _iaSdk?.init();
+  }
+}
+</code></pre>
+<p>Using the specified method, the client implementation is enabled with access to any of the <a href="sdk/IaSdkApi-class.html">IaSdkApi</a> properties,
+and may access them from any point in the widget tree.</p>
+<hr>
+<p>For further information, please see the API reference: TODO</p>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="sdk">
+  <span class="name"><a href="sdk/">sdk</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+        </dl>
+      </section>
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="https://ihreapotheken.de">appsdk_v2_flutter_plugin package</a></li>
+</ol>
+
+    <h5 class="hidden-xs"><span class="package-name">appsdk_v2_flutter_plugin</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="sdk/">sdk</a></li>
+</ol>
+
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+</main>
+<footer>
+  <span class="no-break">
+    appsdk_v2_flutter_plugin
+      0.0.1
+  </span>
+  
+</footer>
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+
