@@ -72,10 +72,12 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">Future&lt;void&gt; init() async {
   await _IaSdkPlatformMethods.initIaSdk.invoke&lt;void&gt;(
-    widget._config.toJson(),
+    {
+      ...widget._config.toJson(),
+      if (Platform.isIOS) &#39;emptyPrerequisites&#39;: true,
+    },
     this,
   );
-  widget._config.initialised = true;
 }</code></pre>
 </section>
 

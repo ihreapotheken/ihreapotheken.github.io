@@ -207,6 +207,19 @@ removed via <a href="https://api.flutter.dev/flutter/widgets/State/deactivate.ht
 
 </dd>
 
+        <dt id="clearCart" class="callable">
+  <span class="name"><a href="../sdk/IaSdkApi/clearCart.html">clearCart</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Resets the state of user cart, clearing any added products or prescriptions.
+  
+
+</dd>
+
         <dt id="deactivate" class="callable inherited">
   <span class="name"><a href="https://api.flutter.dev/flutter/widgets/State/deactivate.html">deactivate</a></span><span class="signature">(<wbr>)
     <span class="returntype parameter">&#8594; void</span>
@@ -269,6 +282,19 @@ removed via <a href="https://api.flutter.dev/flutter/widgets/State/deactivate.ht
 <dd>
   Called when this object is removed from the tree permanently.
   <div class="features"><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="finishAllActivities" class="callable">
+  <span class="name"><a href="../sdk/IaSdkApi/finishAllActivities.html">finishAllActivities</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
 
 </dd>
 
@@ -337,6 +363,19 @@ removed via <a href="https://api.flutter.dev/flutter/widgets/State/deactivate.ht
 
 </dd>
 
+        <dt id="logout" class="callable">
+  <span class="name"><a href="../sdk/IaSdkApi/logout.html">logout</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Resets the user data and onboarding status (pharmacy selection, user consents statuses).
+  
+
+</dd>
+
         <dt id="noSuchMethod" class="callable inherited">
   <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
     <span class="returntype parameter">&#8594; dynamic</span>
@@ -361,6 +400,32 @@ removed via <a href="https://api.flutter.dev/flutter/widgets/State/deactivate.ht
   Called whenever the application is reassembled during debugging, for
 example during hot reload.
   <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="setGuestUserData" class="callable">
+  <span class="name"><a href="../sdk/IaSdkApi/setGuestUserData.html">setGuestUserData</a></span><span class="signature">(<wbr>{<span class="parameter" id="setGuestUserData-param-salutation"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">salutation</span>, </span><span class="parameter" id="setGuestUserData-param-firstName"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">firstName</span>, </span><span class="parameter" id="setGuestUserData-param-lastName"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">lastName</span>, </span><span class="parameter" id="setGuestUserData-param-email"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">email</span>, </span><span class="parameter" id="setGuestUserData-param-phoneNumberCountryCode"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">phoneNumberCountryCode</span>, </span><span class="parameter" id="setGuestUserData-param-phoneNumberWithoutCountryCode"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">phoneNumberWithoutCountryCode</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Forwards the client personal information to the ia.de library for checkout purposes.
+  
+
+</dd>
+
+        <dt id="setPharmacyId" class="callable">
+  <span class="name"><a href="../sdk/IaSdkApi/setPharmacyId.html">setPharmacyId</a></span><span class="signature">(<wbr><span class="parameter" id="setPharmacyId-param-pharmacyId"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">pharmacyId</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Selects a pharmacy with the specified <code>pharmacyId</code>.
+  
 
 </dd>
 
@@ -419,7 +484,7 @@ tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode
 </dd>
 
         <dt id="transferPrescriptions" class="callable">
-  <span class="name"><a href="../sdk/IaSdkApi/transferPrescriptions.html">transferPrescriptions</a></span><span class="signature">(<wbr>{<span class="parameter" id="transferPrescriptions-param-images"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-typed_data/Uint8List-class.html">Uint8List</a></span>&gt;</span>?</span> <span class="parameter-name">images</span>, </span><span class="parameter" id="transferPrescriptions-param-pdfs"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-typed_data/Uint8List-class.html">Uint8List</a></span>&gt;</span>?</span> <span class="parameter-name">pdfs</span>, </span><span class="parameter" id="transferPrescriptions-param-codes"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>&gt;</span>?</span> <span class="parameter-name">codes</span>, </span><span class="parameter" id="transferPrescriptions-param-orderId"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">orderId</span></span>})
+  <span class="name"><a href="../sdk/IaSdkApi/transferPrescriptions.html">transferPrescriptions</a></span><span class="signature">(<wbr>{<span class="parameter" id="transferPrescriptions-param-images"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-typed_data/Uint8List-class.html">Uint8List</a></span>&gt;</span>?</span> <span class="parameter-name">images</span>, </span><span class="parameter" id="transferPrescriptions-param-pdfs"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-typed_data/Uint8List-class.html">Uint8List</a></span>&gt;</span>?</span> <span class="parameter-name">pdfs</span>, </span><span class="parameter" id="transferPrescriptions-param-codes"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">codes</span>, </span><span class="parameter" id="transferPrescriptions-param-orderId"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">orderId</span></span>})
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
   </span>
   

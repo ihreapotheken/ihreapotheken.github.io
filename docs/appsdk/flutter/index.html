@@ -50,7 +50,7 @@
 <p>The plugin implementation is based on the native AppSDK libraries developed by the ia.de team with Kotlin and Swift.</p>
 <p>These native libraries offer both checkout services as well as view components in order to ensure seamless integration
 with any client setup.</p>
-<p>Public API Reference: TODO</p>
+<p>Public API Reference: <a href="https://ihreapotheken.github.io/docs/appsdk/flutter">https://ihreapotheken.github.io/docs/appsdk/flutter</a></p>
 <h2 id="2-developer-setup">2. Developer Setup</h2>
 <hr>
 <ul>
@@ -81,8 +81,8 @@ with any client setup.</p>
 <a href="https://docs.flutter.dev/packages-and-plugins/using-packages">the Flutter SDK documentation</a>
 on using Flutter plugins.</p>
 <h3 id="41-source-control-access">4.1. Source control access</h3>
-<p>TODO</p>
-<h3 id="42-add-the-package-to-the-pubspecyaml-file">4.2. Add the package to the <code>pubspec.yaml</code> file</h3>
+<p>In order to enable</p>
+<h3 id="42-add-the-dependency-to-the-pubspecyaml-file">4.2. Add the dependency to the <code>pubspec.yaml</code> file</h3>
 <p>The library is accessed from Github as in below example:</p>
 <pre class="language-yaml"><code class="language-yaml"># pubspec.yaml
 
@@ -98,6 +98,7 @@ dependencies:
       url: https://github.com/ihreapotheken/IA-SDK-Flutter
       ref: main
 </code></pre>
+<p>You may reference specific branch, tag, or commit hash by specifying the <code>ref</code> field.</p>
 <h3 id="43-plugin-usage">4.3. Plugin usage</h3>
 <p>Methods and properties made available as public APIs implemented with the <code>IaSdk</code> object.</p>
 <p>The client setup requires instantiation of this object for usage:</p>
@@ -139,7 +140,8 @@ is placed in the widget tree in order to be accessed using any available
 <p>Using the specified method, the client implementation is enabled with access to any of the <a href="sdk/IaSdkApi-class.html">IaSdkApi</a> properties,
 and may access them from any point in the widget tree.</p>
 <hr>
-<p>For further information, please see the API reference: TODO</p>
+<p>For further information, please see the
+<a href="https://ihreapotheken.github.io/docs/appsdk/flutter">API reference</a>.</p>
 </section>
 
 

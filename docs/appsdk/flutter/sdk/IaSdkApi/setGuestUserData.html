@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the launchProductSearchRoute method from the IaSdkApi class, for the Dart programming language.">
-  <title>launchProductSearchRoute method - IaSdkApi class - sdk library - Dart API</title>
+  <meta name="description" content="API docs for the setGuestUserData method from the IaSdkApi class, for the Dart programming language.">
+  <title>setGuestUserData method - IaSdkApi class - sdk library - Dart API</title>
 
 
   
@@ -27,9 +27,9 @@
     <li><a href="../../index.html">appsdk_v2_flutter_plugin</a></li>
     <li><a href="../../sdk/">sdk.dart</a></li>
     <li><a href="../../sdk/IaSdkApi-class.html">IaSdkApi</a></li>
-    <li class="self-crumb">launchProductSearchRoute method</li>
+    <li class="self-crumb">setGuestUserData method</li>
   </ol>
-  <div class="self-name">launchProductSearchRoute</div>
+  <div class="self-name">setGuestUserData</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -49,29 +49,50 @@
     data-above-sidebar="sdk&#47;IaSdkApi-class-sidebar.html"
     data-below-sidebar="">
     <div>
-<h1><span class="kind-method">launchProductSearchRoute</span> method 
+<h1><span class="kind-method">setGuestUserData</span> method 
 </h1></div>
 
     <section class="multi-line-signature">
       
 <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
-<span class="name ">launchProductSearchRoute</span>(<wbr>)
+<span class="name ">setGuestUserData</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="setGuestUserData-param-salutation"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">salutation</span>, </span></li>
+<li><span class="parameter" id="setGuestUserData-param-firstName"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">firstName</span>, </span></li>
+<li><span class="parameter" id="setGuestUserData-param-lastName"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">lastName</span>, </span></li>
+<li><span class="parameter" id="setGuestUserData-param-email"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">email</span>, </span></li>
+<li><span class="parameter" id="setGuestUserData-param-phoneNumberCountryCode"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">phoneNumberCountryCode</span>, </span></li>
+<li><span class="parameter" id="setGuestUserData-param-phoneNumberWithoutCountryCode"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">phoneNumberWithoutCountryCode</span>, </span></li>
+</ol>})
 
       
 
     </section>
     
 <section class="desc markdown">
-  <p>Launches the product search screen experience on top of the navigation stack.</p>
+  <p>Forwards the client personal information to the ia.de library for checkout purposes.</p>
 </section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Future&lt;void&gt; launchProductSearchRoute() async {
-  await _launchRoute(
-    _IaSdkPlatformViewType.productSearchScreen,
+  <pre class="language-dart"><code class="language-dart">Future&lt;void&gt; setGuestUserData({
+  required String salutation,
+  required String firstName,
+  required String lastName,
+  required String email,
+  required int phoneNumberCountryCode,
+  required int phoneNumberWithoutCountryCode,
+}) async {
+  return await _IaSdkPlatformMethods.setGuestUserData.invoke&lt;void&gt;(
+    {
+      &#39;salutation&#39;: salutation,
+      &#39;firstName&#39;: firstName,
+      &#39;lastName&#39;: lastName,
+      &#39;email&#39;: email,
+      &#39;phoneNumberCountryCode&#39;: phoneNumberCountryCode.toString(),
+      &#39;phoneNumberWithoutCountryCode&#39;: phoneNumberWithoutCountryCode.toString(),
+    },
+    this,
   );
 }</code></pre>
 </section>
@@ -89,7 +110,7 @@
     <li><a href="../../index.html">appsdk_v2_flutter_plugin</a></li>
     <li><a href="../../sdk/">sdk</a></li>
     <li><a href="../../sdk/IaSdkApi-class.html">IaSdkApi</a></li>
-    <li class="self-crumb">launchProductSearchRoute method</li>
+    <li class="self-crumb">setGuestUserData method</li>
 </ol>
 
     <h5>IaSdkApi class</h5>
