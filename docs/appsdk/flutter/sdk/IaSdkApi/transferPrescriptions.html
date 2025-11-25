@@ -79,6 +79,17 @@
   Iterable&lt;String&gt;? codes,
   String? orderId,
 }) async {
+  if (Platform.isIOS) {
+    await _IaSdkPlatformMethods.initIaSdk.invoke&lt;void&gt;(
+      {
+        ...widget._config.toJson(),
+        &#39;shouldRunLegal&#39;: true,
+        &#39;shouldRunOnboarding&#39;: false,
+        &#39;shouldRunApofinder&#39;: true,
+      },
+      this,
+    );
+  }
   await _IaSdkPlatformMethods.transferPrescriptions.invoke&lt;void&gt;(
     {
       &#39;images&#39;: images,
