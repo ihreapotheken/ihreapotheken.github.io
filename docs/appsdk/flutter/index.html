@@ -54,8 +54,8 @@ with any client setup.</p>
 <h2 id="2-developer-setup">2. Developer Setup</h2>
 <hr>
 <ul>
-<li><a href="https://docs.flutter.dev/get-started/install">Flutter SDK</a> 3.3 and up</li>
-<li><a href="https://dart.dev/get-dart">Dart SDK</a> 3.9.2 and up</li>
+<li><a href="https://docs.flutter.dev/get-started/install">Flutter SDK</a> 3.30.0 and up</li>
+<li><a href="https://dart.dev/get-dart">Dart SDK</a> 3.10.0 and up</li>
 <li><a href="https://docs.flutter.dev/packages-and-plugins/swift-package-manager/for-app-developers">Swift Package Manager</a> Flutter SDK Support</li>
 <li><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens">Github Token</a> for native library access</li>
 </ul>
@@ -85,8 +85,8 @@ on using Flutter plugins.</p>
 <pre class="language-yaml"><code class="language-yaml"># pubspec.yaml
 
 environment:
-  sdk: ^3.9.2
-  flutter: '&gt;=3.3.0'
+  sdk: '&gt;=3.10.0'
+  flutter: '&gt;=3.30.0'
 
 dependencies:
   flutter:
@@ -100,45 +100,74 @@ dependencies:
 <p>Version reference numbers can be found by reviewing
 <a href="https://github.com/ihreapotheken/IA-SDK-Flutter/tags">the package Github repository tags</a>.</p>
 <h3 id="42-plugin-usage">4.2. Plugin usage</h3>
-<p>Methods and properties made available as public APIs implemented with the <code>IaSdk</code> object.</p>
-<p>The client setup requires instantiation of this object for usage:</p>
-<pre class="language-dart"><code class="language-dart">import 'package:flutter/material.dart';
-import 'package:appsdk_v2_flutter_plugin/sdk.dart';
+<p>Methods and properties made available as public APIs implemented with the <code>IaSdk.instance</code> object.</p>
+<p>The client setup requires module registration and invocation of the <code>initialize</code> method for usage:</p>
+<pre class="language-dart"><code class="language-dart">import 'package:appsdk_v2_flutter_plugin/sdk.dart';
 
-void main() {
+Future&lt;void&gt; initIaSdk() {
+  await IaSdk.instance.register(
+    modules: [
+      // Described in the following section.
+    ],
+  );
   final iaSdkConfig = IaSdkConfiguration(
     accessKey: 'myAccessKey',
     clientId: 'myClientId',
-    serverEnvironment: 'myServerEnvironment',
+    serverEnvironment: myServerEnvironment,
   );
-  runApp(
-    IaSdk( // Alternatively, place the [IaSdk] wrapper somewhere else in the widget tree.
-      child: ExampleApp(),
-      configuration: ExampleAppConfig.instance.pluginConfig,
-    ),
+  await IaSdk.instance.initialize(
+    config: iaSdkConfig,
   );
 }
 </code></pre>
-<p>In the above example, after specifying the required fields with the <code>IaSdkConfiguration</code>,
-an <code>IaSdk</code> <a href="https://docs.flutter.dev/get-started/fundamentals/widgets">Widget</a>
-is placed in the widget tree in order to be accessed using any available
-<a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a> value:</p>
-<pre class="language-dart"><code class="language-dart">class _ExampleAppState extends State&lt;ExampleApp&gt; {
-  /// Getter method for retrieving of the nearest ancestor object of [IaSdkApi] type.
-  /// 
-  IaSdkApi? get _iaSdk {
-    return IaSdk.of(context);
-  }
+<p>Each of the two methods are expected to only be invoked once during the application runtime.</p>
+<h3 id="43-module-registration">4.3. Module registration</h3>
+<p>Each of the individual native modules are available for installation from the
+<a href="https://github.com/ihreapotheken/IA-SDK-Flutter">modules</a> directory:</p>
+<pre class="language-yaml"><code class="language-yaml"># pubspec.yaml
 
-  /// Allocate the ia.de runtime resources.
-  /// 
-  Future&lt;void&gt; _initIaSdk() async {
-    await _iaSdk?.init();
-  }
+environment:
+  sdk: '&gt;=3.10.0'
+  flutter: '&gt;=3.30.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  appsdk_v2_flutter_plugin:
+    git:
+      url: https://github.com/ihreapotheken/IA-SDK-Flutter
+      ref: main
+  ia_cardlink: # Example module dependency.
+    git:
+      url: https://github.com/ihreapotheken/IA-SDK-Flutter
+      ref: main
+      path: modules/ia_cardlink
+</code></pre>
+<p>After implementing the modules with the <code>pubspec.yaml</code> file,
+it's public API declaration object needs to be instantiated, after which it can be forwarded to the <code>register</code> method:</p>
+<pre class="language-dart"><code class="language-dart">import 'package:appsdk_v2_flutter_plugin/sdk.dart';
+import 'package:ia_cardlink/ia_cardlink.dart';
+
+final cardLinkModule = IaModuleCardLink();
+
+Future&lt;void&gt; initIaSdk() {
+  await IaSdk.instance.register(
+    modules: [
+      cardLinkModule,
+    ],
+  );
+  
+  ...
+
 }
 </code></pre>
-<p>Using the specified method, the client implementation is enabled with access to any of the <a href="sdk/IaSdkApi-class.html">IaSdkApi</a> properties,
-and may access them from any point in the widget tree.</p>
+<p>Once this is done, the module and it's respective methods and properties
+can be accessed from the <code>IaSdk.instance</code> object by accessing it's internal state:</p>
+<pre class="language-dart"><code class="language-dart">import 'package:appsdk_v2_flutter_plugin/sdk.dart';
+
+IaSdk.instance.cardLink;
+</code></pre>
+<p>For the list of available modules, please visit the <a href="https://github.com/ihreapotheken/IA-SDK-Flutter">modules</a> directory.</p>
 <hr>
 <p>For further information, please see the
 <a href="https://ihreapotheken.github.io/docs/appsdk/flutter">API reference</a>.</p>

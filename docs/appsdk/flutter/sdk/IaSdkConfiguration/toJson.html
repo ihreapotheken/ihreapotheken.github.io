@@ -54,7 +54,7 @@
 
     <section class="multi-line-signature">
       
-<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>
+<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>
 <span class="name ">toJson</span>(<wbr>)
 
       
@@ -69,11 +69,14 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Map&lt;String, String&gt; toJson() {
+  <pre class="language-dart"><code class="language-dart">Map&lt;String, dynamic&gt; toJson() {
   return {
     &#39;accessKey&#39;: accessKey,
     &#39;clientId&#39;: clientId,
     &#39;serverEnvironment&#39;: serverEnvironment.name,
+    &#39;shouldFetchThemeFromRemote&#39;: shouldFetchThemeFromRemote,
+    &#39;footer&#39;: footer.toJson(),
+    &#39;initialization&#39;: initialization.toJson(),
   };
 }</code></pre>
 </section>
