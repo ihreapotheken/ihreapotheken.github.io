@@ -1,3 +1,8 @@
+---
+layout: default
+title: Usage and Testing
+---
+
 # IhreApotheken.de AppSDK Usage and Testing
 
 Mobile app libraries provided with the IhreApotheken.de "AppSDK" software suite are a collection of resources client mobile apps can integrate to implement functionalities such as:
