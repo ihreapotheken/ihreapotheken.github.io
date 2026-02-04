@@ -87,7 +87,7 @@ Access for client integrations is granted by whitelisting developer IP addresses
 
 Pharmacies in the IhreApotheken.de system are identified by integer values.
 
-**Default test pharmacy ID:** `2163`
+**Default test pharmacy ID:** `719`
 
 For client integrations, a dedicated pharmacy is generated with configurable service options. These options determine customer-facing features such as:
 
@@ -98,7 +98,7 @@ Contact the IhreApotheken.de team during onboarding for further details.
 
 ## 5. Testing Online Payments
 
-PayPal payments can be tested via the **Staging** or **Development** server environments using the test pharmacy (`2163`) or any other pharmacy that supports online payments.
+PayPal payments can be tested via the **Staging** or **Development** server environments using the test pharmacy (`719`) or any other pharmacy that supports online payments.
 
 In these environments, PayPal connects to the [sandbox](https://developer.paypal.com/tools/sandbox/) version of the payment service.
 
