@@ -5,7 +5,7 @@
  * using browser APIs so that the backend can match web visitors
  * to app installs for deferred deep linking.
  */
-const DeviceFingerprint = (() => {
+var DeviceFingerprint = (() => {
   'use strict';
 
   /**

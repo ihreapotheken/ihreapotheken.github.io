@@ -206,8 +206,14 @@
     <div class="deeplink-result" id="deeplinkResult"></div>
   </div>
 
-  <script src="fingerprint.js" onerror="window._fpLoadError=true"></script>
+  <script>window._fpErrors = [];</script>
+  <script src="fingerprint.js" onerror="window._fpErrors.push('Script failed to load')"></script>
   <script>
+    window.addEventListener('error', function(e) {
+      if (e.filename && e.filename.indexOf('fingerprint') !== -1) {
+        window._fpErrors.push(e.message + ' (line ' + e.lineno + ')');
+      }
+    });
     const collectBtn = document.getElementById('collectBtn');
     const copyBtn = document.getElementById('copyBtn');
     const jsonOutput = document.getElementById('jsonOutput');
@@ -223,8 +229,14 @@
       collectBtn.disabled = true;
       collectBtn.textContent = 'Collecting…';
 
-      if (window._fpLoadError || typeof DeviceFingerprint === 'undefined') {
-        jsonOutput.textContent = 'Error: fingerprint.js failed to load. Make sure it is in the same directory as index.html.';
+      if (typeof DeviceFingerprint === 'undefined') {
+        var msg = 'Error: DeviceFingerprint is not available.\n';
+        if (window._fpErrors.length > 0) {
+          msg += 'Details: ' + window._fpErrors.join('; ');
+        } else {
+          msg += 'The script may have failed to parse. Check the browser console for details.';
+        }
+        jsonOutput.textContent = msg;
         jsonOutput.classList.add('visible');
         collectBtn.textContent = 'Collect Signals';
         collectBtn.disabled = false;
@@ -261,8 +273,8 @@
     });
 
     resolveBtn.addEventListener('click', async () => {
-      if (window._fpLoadError || typeof DeviceFingerprint === 'undefined') {
-        resolveStatus.textContent = 'Error: fingerprint.js failed to load.';
+      if (typeof DeviceFingerprint === 'undefined') {
+        resolveStatus.textContent = 'Error: DeviceFingerprint is not available.';
         resolveStatus.className = 'status error';
         return;
       }
