@@ -206,51 +206,466 @@
     <div class="deeplink-result" id="deeplinkResult"></div>
   </div>
 
-  <script>window._fpErrors = [];</script>
-  <script src="fingerprint.js" onerror="window._fpErrors.push('Script failed to load')"></script>
   <script>
-    window.addEventListener('error', function(e) {
-      if (e.filename && e.filename.indexOf('fingerprint') !== -1) {
-        window._fpErrors.push(e.message + ' (line ' + e.lineno + ')');
+/**
+ * Browser-side device fingerprint collector.
+ *
+ * Collects the same signals as the native iOS DeviceInfoCollector
+ * using browser APIs so that the backend can match web visitors
+ * to app installs for deferred deep linking.
+ */
+var DeviceFingerprint = (function() {
+  'use strict';
+
+  async function collect() {
+    var info = {};
+
+    // -- Device / User-Agent --
+    info.userAgent = navigator.userAgent;
+    info.platform = navigator.platform;
+    info.vendor = navigator.vendor || '';
+
+    // -- Screen --
+    info.devicePixelRatio = window.devicePixelRatio;
+    info.screenWidth = screen.width;
+    info.screenHeight = screen.height;
+    info.screenAvailWidth = screen.availWidth;
+    info.screenAvailHeight = screen.availHeight;
+    info.screenWidthPx = Math.round(screen.width * window.devicePixelRatio);
+    info.screenHeightPx = Math.round(screen.height * window.devicePixelRatio);
+    info.screenColorDepth = screen.colorDepth;
+
+    // -- Locale / Language --
+    info.language = navigator.language;
+    info.languages = navigator.languages ? Array.from(navigator.languages) : [navigator.language];
+    info.languageCode = navigator.language.split('-')[0];
+    info.regionCode = navigator.language.includes('-')
+      ? navigator.language.split('-').slice(1).join('-')
+      : '';
+
+    // -- Timezone --
+    var resolvedTz = Intl.DateTimeFormat().resolvedOptions();
+    info.timezoneIdentifier = resolvedTz.timeZone;
+    info.timezoneOffsetSeconds = new Date().getTimezoneOffset() * -60;
+    info.timezoneAbbreviation = _getTimezoneAbbreviation();
+
+    // -- Timestamps --
+    var now = new Date();
+    info.deviceTimestampUTC = now.toISOString();
+    info.deviceTimestampEpochMs = Date.now();
+    info.deviceLocalTimestamp = _toLocalISOString(now);
+
+    // -- Locale formatting --
+    info.decimalSeparator = _getDecimalSeparator();
+    info.groupingSeparator = _getGroupingSeparator();
+    var currencyInfo = _getCurrencyInfo();
+    info.currencyCode = currencyInfo.code;
+    info.currencySymbol = currencyInfo.symbol;
+
+    // -- Calendar --
+    info.calendarIdentifier = resolvedTz.calendar || 'gregory';
+    info.firstWeekday = _getFirstWeekday();
+
+    // -- Time format --
+    info.uses24HourTime = _uses24HourTime();
+
+    // -- Metric system --
+    info.usesMetricSystem = _usesMetricSystem();
+
+    // -- Dark/light mode --
+    info.userInterfaceStyle = _getColorScheme();
+
+    // -- Font size / text scale --
+    info.baseFontSize = _getBaseFontSize();
+
+    // -- Device orientation --
+    info.deviceOrientation = _getOrientation();
+
+    // -- Network type --
+    var netInfo = _getNetworkInfo();
+    info.connectionEffectiveType = netInfo.effectiveType;
+    info.connectionDownlink = netInfo.downlink;
+    info.connectionRtt = netInfo.rtt;
+
+    // -- Hardware --
+    info.hardwareConcurrency = navigator.hardwareConcurrency || null;
+    info.deviceMemoryGB = navigator.deviceMemory || null;
+
+    // -- Battery --
+    var battery = await _getBatteryInfo();
+    info.batteryLevel = battery.level;
+    info.batteryCharging = battery.charging;
+
+    // -- Storage estimate --
+    var storage = await _getStorageEstimate();
+    info.storageQuotaBytes = storage.quota;
+    info.storageUsageBytes = storage.usage;
+
+    // -- Touch support --
+    info.maxTouchPoints = navigator.maxTouchPoints || 0;
+    info.touchSupport = 'ontouchstart' in window;
+
+    // -- Do Not Track --
+    info.doNotTrack = navigator.doNotTrack || window.doNotTrack || null;
+
+    // -- Cookie enabled --
+    info.cookieEnabled = navigator.cookieEnabled;
+
+    // -- PDF viewer --
+    info.pdfViewerEnabled = navigator.pdfViewerEnabled != null ? navigator.pdfViewerEnabled : null;
+
+    // -- WebGL renderer (GPU fingerprint) --
+    info.webglRenderer = _getWebGLRenderer();
+
+    // -- Canvas fingerprint hash --
+    info.canvasHash = _getCanvasHash();
+
+    // -- Audio context fingerprint --
+    info.audioContextHash = await _getAudioFingerprint();
+
+    // -- Viewport dimensions --
+    info.viewportWidth = window.innerWidth;
+    info.viewportHeight = window.innerHeight;
+    info.outerWidth = window.outerWidth;
+    info.outerHeight = window.outerHeight;
+
+    // -- Pixel depth --
+    info.pixelDepth = screen.pixelDepth;
+
+    // -- WebDriver (automation detection) --
+    info.webdriver = navigator.webdriver || false;
+
+    // -- Plugins count --
+    info.pluginsCount = navigator.plugins ? navigator.plugins.length : 0;
+    info.mimeTypesCount = navigator.mimeTypes ? navigator.mimeTypes.length : 0;
+
+    // -- Accessibility / reduced motion --
+    info.prefersReducedMotion = window.matchMedia
+      ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      : null;
+    info.prefersContrast = _getPrefersContrast();
+    info.forcedColors = window.matchMedia
+      ? window.matchMedia('(forced-colors: active)').matches
+      : null;
+
+    // -- Available locales count --
+    info.availableLocalesCount = _getAvailableLocalesCount();
+
+    // -- Performance timing --
+    info.performanceNow = performance.now();
+
+    // -- Math constants fingerprint --
+    info.mathFingerprint = _getMathFingerprint();
+
+    // -- Installed fonts --
+    info.installedFontsHash = _getInstalledFontsHash();
+
+    return info;
+  }
+
+  async function collectAsJson() {
+    var info = await collect();
+    return JSON.stringify(info);
+  }
+
+  async function resolve(endpoint, options) {
+    options = options || {};
+    var timeout = options.timeout || 10000;
+    try {
+      var info = await collect();
+      var controller = new AbortController();
+      var timer = setTimeout(function() { controller.abort(); }, timeout);
+      var response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(info),
+        signal: controller.signal,
+      });
+      clearTimeout(timer);
+      if (response.ok) {
+        var data = await response.json();
+        return data.deeplink || null;
       }
-    });
-    const collectBtn = document.getElementById('collectBtn');
-    const copyBtn = document.getElementById('copyBtn');
-    const jsonOutput = document.getElementById('jsonOutput');
-    const signalCount = document.getElementById('signalCount');
-    const resolveBtn = document.getElementById('resolveBtn');
-    const endpointInput = document.getElementById('endpointInput');
-    const resolveStatus = document.getElementById('resolveStatus');
-    const deeplinkResult = document.getElementById('deeplinkResult');
+      return null;
+    } catch (_) {
+      return null;
+    }
+  }
 
-    let lastCollected = null;
+  // ── Private helpers ──────────────────────────────────────────────
 
-    collectBtn.addEventListener('click', async () => {
-      collectBtn.disabled = true;
-      collectBtn.textContent = 'Collecting…';
+  function _getTimezoneAbbreviation() {
+    try {
+      var parts = new Intl.DateTimeFormat(undefined, { timeZoneName: 'short' })
+        .formatToParts(new Date());
+      var tzPart = parts.find(function(p) { return p.type === 'timeZoneName'; });
+      return tzPart ? tzPart.value : '';
+    } catch (_) { return ''; }
+  }
 
-      if (typeof DeviceFingerprint === 'undefined') {
-        var msg = 'Error: DeviceFingerprint is not available.\n';
-        if (window._fpErrors.length > 0) {
-          msg += 'Details: ' + window._fpErrors.join('; ');
-        } else {
-          msg += 'The script may have failed to parse. Check the browser console for details.';
+  function _toLocalISOString(date) {
+    var off = date.getTimezoneOffset();
+    var sign = off <= 0 ? '+' : '-';
+    var absOff = Math.abs(off);
+    var hh = String(Math.floor(absOff / 60)).padStart(2, '0');
+    var mm = String(absOff % 60).padStart(2, '0');
+    var local = new Date(date.getTime() - off * 60000);
+    return local.toISOString().replace('Z', sign + hh + ':' + mm);
+  }
+
+  function _getDecimalSeparator() {
+    try {
+      var parts = new Intl.NumberFormat().formatToParts(1.1);
+      var dec = parts.find(function(p) { return p.type === 'decimal'; });
+      return dec ? dec.value : '.';
+    } catch (_) { return '.'; }
+  }
+
+  function _getGroupingSeparator() {
+    try {
+      var parts = new Intl.NumberFormat().formatToParts(10000);
+      var grp = parts.find(function(p) { return p.type === 'group'; });
+      return grp ? grp.value : ',';
+    } catch (_) { return ','; }
+  }
+
+  function _getCurrencyInfo() {
+    try {
+      var opts = new Intl.NumberFormat(undefined, { style: 'currency', currency: 'USD' }).resolvedOptions();
+      var parts = new Intl.NumberFormat(undefined, { style: 'currency', currency: opts.currency }).formatToParts(0);
+      var sym = parts.find(function(p) { return p.type === 'currency'; });
+      return { code: opts.currency || '', symbol: sym ? sym.value : '' };
+    } catch (_) { return { code: '', symbol: '' }; }
+  }
+
+  function _getFirstWeekday() {
+    try {
+      var locale = new Intl.Locale(navigator.language);
+      if (locale.weekInfo) return locale.weekInfo.firstDay;
+      if (locale.getWeekInfo) return locale.getWeekInfo().firstDay;
+    } catch (_) {}
+    return null;
+  }
+
+  function _uses24HourTime() {
+    try {
+      var opts = new Intl.DateTimeFormat(undefined, { hour: 'numeric' }).resolvedOptions();
+      return opts.hourCycle === 'h23' || opts.hourCycle === 'h24';
+    } catch (_) { return null; }
+  }
+
+  function _usesMetricSystem() {
+    var region = (navigator.language.split('-')[1] || '').toUpperCase();
+    var imperialRegions = ['US', 'LR', 'MM'];
+    if (region) return !imperialRegions.includes(region);
+    return null;
+  }
+
+  function _getColorScheme() {
+    if (window.matchMedia) {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
+      if (window.matchMedia('(prefers-color-scheme: light)').matches) return 'light';
+    }
+    return 'unspecified';
+  }
+
+  function _getBaseFontSize() {
+    try { return parseFloat(getComputedStyle(document.documentElement).fontSize); }
+    catch (_) { return null; }
+  }
+
+  function _getOrientation() {
+    if (screen.orientation) return screen.orientation.type;
+    if (typeof window.orientation !== 'undefined') {
+      return window.orientation === 0 || window.orientation === 180 ? 'portrait' : 'landscape';
+    }
+    return 'unknown';
+  }
+
+  function _getNetworkInfo() {
+    var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (conn) {
+      return {
+        effectiveType: conn.effectiveType || null,
+        downlink: conn.downlink != null ? conn.downlink : null,
+        rtt: conn.rtt != null ? conn.rtt : null,
+      };
+    }
+    return { effectiveType: null, downlink: null, rtt: null };
+  }
+
+  async function _getBatteryInfo() {
+    try {
+      if (navigator.getBattery) {
+        var batt = await navigator.getBattery();
+        return { level: batt.level, charging: batt.charging };
+      }
+    } catch (_) {}
+    return { level: null, charging: null };
+  }
+
+  async function _getStorageEstimate() {
+    try {
+      if (navigator.storage && navigator.storage.estimate) {
+        var est = await navigator.storage.estimate();
+        return { quota: est.quota || null, usage: est.usage || null };
+      }
+    } catch (_) {}
+    return { quota: null, usage: null };
+  }
+
+  function _getWebGLRenderer() {
+    try {
+      var canvas = document.createElement('canvas');
+      var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (gl) {
+        var ext = gl.getExtension('WEBGL_debug_renderer_info');
+        if (ext) return gl.getParameter(ext.UNMASKED_RENDERER_WEBGL);
+      }
+    } catch (_) {}
+    return null;
+  }
+
+  function _getCanvasHash() {
+    try {
+      var canvas = document.createElement('canvas');
+      canvas.width = 200; canvas.height = 50;
+      var ctx = canvas.getContext('2d');
+      if (!ctx) return null;
+      ctx.textBaseline = 'top';
+      ctx.font = '14px Arial';
+      ctx.fillStyle = '#f60';
+      ctx.fillRect(10, 1, 62, 20);
+      ctx.fillStyle = '#069';
+      ctx.fillText('fingerprint', 2, 15);
+      ctx.fillStyle = 'rgba(102,204,0,0.7)';
+      ctx.fillText('fingerprint', 4, 17);
+      var dataUrl = canvas.toDataURL();
+      var hash = 0;
+      for (var i = 0; i < dataUrl.length; i++) {
+        hash = ((hash << 5) - hash) + dataUrl.charCodeAt(i);
+        hash |= 0;
+      }
+      return hash;
+    } catch (_) { return null; }
+  }
+
+  async function _getAudioFingerprint() {
+    try {
+      var AC = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+      if (!AC) return null;
+      var ctx = new AC(1, 44100, 44100);
+      var osc = ctx.createOscillator();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(10000, ctx.currentTime);
+      var comp = ctx.createDynamicsCompressor();
+      comp.threshold.setValueAtTime(-50, ctx.currentTime);
+      comp.knee.setValueAtTime(40, ctx.currentTime);
+      comp.ratio.setValueAtTime(12, ctx.currentTime);
+      comp.attack.setValueAtTime(0, ctx.currentTime);
+      comp.release.setValueAtTime(0.25, ctx.currentTime);
+      osc.connect(comp);
+      comp.connect(ctx.destination);
+      osc.start(0);
+      var buffer = await ctx.startRendering();
+      var data = buffer.getChannelData(0);
+      var hash = 0;
+      for (var i = 4500; i < 5000; i++) {
+        hash = ((hash << 5) - hash) + Math.round(data[i] * 1000000);
+        hash |= 0;
+      }
+      return hash;
+    } catch (_) { return null; }
+  }
+
+  function _getPrefersContrast() {
+    if (!window.matchMedia) return null;
+    if (window.matchMedia('(prefers-contrast: more)').matches) return 'more';
+    if (window.matchMedia('(prefers-contrast: less)').matches) return 'less';
+    if (window.matchMedia('(prefers-contrast: custom)').matches) return 'custom';
+    return 'no-preference';
+  }
+
+  function _getAvailableLocalesCount() {
+    try {
+      if (Intl.Segmenter && Intl.Segmenter.supportedLocalesOf) return null;
+    } catch (_) {}
+    return null;
+  }
+
+  function _getMathFingerprint() {
+    try {
+      var values = [
+        Math.acos(0.5), Math.acosh(1e308), Math.asin(0.5), Math.asinh(1),
+        Math.atanh(0.5), Math.cbrt(100), Math.cosh(1), Math.expm1(1),
+        Math.log1p(10), Math.sinh(1), Math.tanh(1),
+      ];
+      var hash = 0;
+      for (var vi = 0; vi < values.length; vi++) {
+        var s = values[vi].toString();
+        for (var i = 0; i < s.length; i++) {
+          hash = ((hash << 5) - hash) + s.charCodeAt(i);
+          hash |= 0;
         }
-        jsonOutput.textContent = msg;
-        jsonOutput.classList.add('visible');
-        collectBtn.textContent = 'Collect Signals';
-        collectBtn.disabled = false;
-        return;
       }
+      return hash;
+    } catch (_) { return null; }
+  }
+
+  function _getInstalledFontsHash() {
+    try {
+      var testFonts = [
+        'Arial', 'Verdana', 'Times New Roman', 'Courier New', 'Georgia',
+        'Palatino', 'Garamond', 'Comic Sans MS', 'Impact', 'Lucida Console',
+        'Tahoma', 'Trebuchet MS', 'Helvetica', 'Futura', 'Gill Sans',
+        'Rockwell', 'Optima', 'Baskerville', 'Didot', 'American Typewriter',
+      ];
+      var canvas = document.createElement('canvas');
+      var ctx = canvas.getContext('2d');
+      if (!ctx) return null;
+      var baseline = 'monospace';
+      var testStr = 'mmmmmmmmmmlli';
+      ctx.font = '72px ' + baseline;
+      var baseWidth = ctx.measureText(testStr).width;
+      var hash = 0;
+      for (var fi = 0; fi < testFonts.length; fi++) {
+        ctx.font = '72px "' + testFonts[fi] + '", ' + baseline;
+        if (ctx.measureText(testStr).width !== baseWidth) {
+          for (var i = 0; i < testFonts[fi].length; i++) {
+            hash = ((hash << 5) - hash) + testFonts[fi].charCodeAt(i);
+            hash |= 0;
+          }
+        }
+      }
+      return hash;
+    } catch (_) { return null; }
+  }
+
+  return { collect: collect, collectAsJson: collectAsJson, resolve: resolve };
+})();
+  </script>
+  <script>
+    var collectBtn = document.getElementById('collectBtn');
+    var copyBtn = document.getElementById('copyBtn');
+    var jsonOutput = document.getElementById('jsonOutput');
+    var signalCount = document.getElementById('signalCount');
+    var resolveBtn = document.getElementById('resolveBtn');
+    var endpointInput = document.getElementById('endpointInput');
+    var resolveStatus = document.getElementById('resolveStatus');
+    var deeplinkResult = document.getElementById('deeplinkResult');
+
+    var lastCollected = null;
+
+    collectBtn.addEventListener('click', async function() {
+      collectBtn.disabled = true;
+      collectBtn.textContent = 'Collecting\u2026';
 
       try {
-        const info = await DeviceFingerprint.collect();
+        var info = await DeviceFingerprint.collect();
         lastCollected = info;
-        const json = JSON.stringify(info, null, 2);
-
-        const count = Object.keys(info).length;
-        signalCount.textContent = `${count} signals collected`;
-
+        var json = JSON.stringify(info, null, 2);
+        var count = Object.keys(info).length;
+        signalCount.textContent = count + ' signals collected';
         jsonOutput.textContent = json;
         jsonOutput.classList.add('visible');
         copyBtn.style.display = 'inline-block';
@@ -263,23 +678,17 @@
       collectBtn.disabled = false;
     });
 
-    copyBtn.addEventListener('click', () => {
+    copyBtn.addEventListener('click', function() {
       if (!lastCollected) return;
-      const json = JSON.stringify(lastCollected, null, 2);
-      navigator.clipboard.writeText(json).then(() => {
+      var json = JSON.stringify(lastCollected, null, 2);
+      navigator.clipboard.writeText(json).then(function() {
         copyBtn.textContent = 'Copied!';
-        setTimeout(() => { copyBtn.textContent = 'Copy JSON'; }, 1500);
+        setTimeout(function() { copyBtn.textContent = 'Copy JSON'; }, 1500);
       });
     });
 
-    resolveBtn.addEventListener('click', async () => {
-      if (typeof DeviceFingerprint === 'undefined') {
-        resolveStatus.textContent = 'Error: DeviceFingerprint is not available.';
-        resolveStatus.className = 'status error';
-        return;
-      }
-
-      const endpoint = endpointInput.value.trim();
+    resolveBtn.addEventListener('click', async function() {
+      var endpoint = endpointInput.value.trim();
       if (!endpoint) {
         resolveStatus.textContent = 'Please enter an endpoint URL.';
         resolveStatus.className = 'status error';
@@ -287,12 +696,12 @@
       }
 
       resolveBtn.disabled = true;
-      resolveStatus.textContent = 'Sending fingerprint…';
+      resolveStatus.textContent = 'Sending fingerprint\u2026';
       resolveStatus.className = 'status';
       deeplinkResult.classList.remove('visible');
 
       try {
-        const deeplink = await DeviceFingerprint.resolve(endpoint);
+        var deeplink = await DeviceFingerprint.resolve(endpoint);
         if (deeplink) {
           resolveStatus.textContent = 'Deeplink resolved!';
           resolveStatus.className = 'status success';
