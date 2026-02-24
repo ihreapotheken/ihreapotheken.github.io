@@ -206,7 +206,7 @@
     <div class="deeplink-result" id="deeplinkResult"></div>
   </div>
 
-  <script src="fingerprint.js"></script>
+  <script src="fingerprint.js" onerror="window._fpLoadError=true"></script>
   <script>
     const collectBtn = document.getElementById('collectBtn');
     const copyBtn = document.getElementById('copyBtn');
@@ -222,6 +222,14 @@
     collectBtn.addEventListener('click', async () => {
       collectBtn.disabled = true;
       collectBtn.textContent = 'Collecting…';
+
+      if (window._fpLoadError || typeof DeviceFingerprint === 'undefined') {
+        jsonOutput.textContent = 'Error: fingerprint.js failed to load. Make sure it is in the same directory as index.html.';
+        jsonOutput.classList.add('visible');
+        collectBtn.textContent = 'Collect Signals';
+        collectBtn.disabled = false;
+        return;
+      }
 
       try {
         const info = await DeviceFingerprint.collect();
@@ -253,6 +261,12 @@
     });
 
     resolveBtn.addEventListener('click', async () => {
+      if (window._fpLoadError || typeof DeviceFingerprint === 'undefined') {
+        resolveStatus.textContent = 'Error: fingerprint.js failed to load.';
+        resolveStatus.className = 'status error';
+        return;
+      }
+
       const endpoint = endpointInput.value.trim();
       if (!endpoint) {
         resolveStatus.textContent = 'Please enter an endpoint URL.';

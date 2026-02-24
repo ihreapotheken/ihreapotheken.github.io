@@ -107,7 +107,7 @@ const DeviceFingerprint = (() => {
     info.cookieEnabled = navigator.cookieEnabled;
 
     // -- PDF viewer --
-    info.pdfViewerEnabled = navigator.pdfViewerEnabled ?? null;
+    info.pdfViewerEnabled = navigator.pdfViewerEnabled != null ? navigator.pdfViewerEnabled : null;
 
     // -- WebGL renderer (GPU fingerprint) --
     info.webglRenderer = _getWebGLRenderer();
@@ -334,8 +334,8 @@ const DeviceFingerprint = (() => {
     if (conn) {
       return {
         effectiveType: conn.effectiveType || null,
-        downlink: conn.downlink ?? null,
-        rtt: conn.rtt ?? null,
+        downlink: conn.downlink != null ? conn.downlink : null,
+        rtt: conn.rtt != null ? conn.rtt : null,
       };
     }
     return { effectiveType: null, downlink: null, rtt: null };
