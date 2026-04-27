@@ -1,0 +1,62 @@
+
+<!-- ── Drop Zone ── -->
+<div id="dropzone">
+  <div class="drop-icon">📦</div>
+  <div class="drop-title">IA SDK E2E Report Viewer</div>
+  <div class="drop-sub">Drop an <code>e2e-results_*.zip</code> file here to view the test report</div>
+  <button class="drop-btn" onclick="document.getElementById('fileInput').click()">Browse for zip…</button>
+  <input type="file" id="fileInput" accept=".zip">
+  <div class="drop-note">All processing is local — no data leaves your machine.</div>
+  <button class="theme-toggle" onclick="cycleTheme()" style="margin-top: 16px;">
+    <span id="theme-icon-drop">🌗</span> <span id="theme-label-drop">Auto</span>
+  </button>
+</div>
+
+<!-- ── Loading overlay ── -->
+<div id="loading"><div class="spinner"></div><span>Reading zip…</span></div>
+
+<!-- ── Report output ── -->
+<div id="report">
+  <div class="toolbar">
+    <div>
+      <h1 id="report-title">IA SDK E2E — Test Report</h1>
+      <div class="meta" id="meta"></div>
+    </div>
+    <div style="display: flex; gap: 8px; align-items: center;">
+      <div class="export-dropdown">
+        <button class="reload-btn" onclick="toggleExportMenu()">📋 Export ▾</button>
+        <div class="export-menu" id="export-menu">
+          <button onclick="exportDebugViewerLogs()">🔍 Debug Viewer Logs<span>Network, debug, analytics</span></button>
+          <button onclick="exportAdbLogs()">📱 ADB / SDK Logs<span>Logcat output per test</span></button>
+          <button onclick="exportFullReport()">📄 Full Report<span>Everything in one file</span></button>
+        </div>
+      </div>
+      <button class="theme-toggle" onclick="cycleTheme()">
+        <span id="theme-icon-bar">🌗</span> <span id="theme-label-bar">Auto</span>
+      </button>
+      <button class="reload-btn" onclick="resetViewer()">← Load another zip</button>
+    </div>
+  </div>
+  <div class="summary" id="summary"></div>
+  <div id="filter-bar" class="filter-bar" style="display:none;">
+    <input type="text" id="filterSearch" placeholder="Search test ID or name…" oninput="applyFilters()">
+    <label><input type="checkbox" class="filter-status" value="pass" checked onchange="applyFilters()"> Pass</label>
+    <label><input type="checkbox" class="filter-status" value="fail" checked onchange="applyFilters()"> Fail</label>
+    <label><input type="checkbox" class="filter-status" value="warn" checked onchange="applyFilters()"> Warn</label>
+    <label><input type="checkbox" class="filter-status" value="other" checked onchange="applyFilters()"> Error/Skip</label>
+    <button onclick="expandAll()">Expand All</button>
+    <button onclick="collapseAll()">Collapse All</button>
+    <span class="showing-count" id="showingCount"></span>
+  </div>
+  <div id="overall-summary"></div>
+  <div id="run-log-section" style="display:none; margin-bottom: 18px;">
+    <div class="logs-toggle" id="run-log-toggle" onclick="toggleRunLog()">
+      <span class="arrow">▶</span> Run Log — test runner output (<span id="run-log-line-count">0 lines</span>)
+    </div>
+    <pre class="logs-pre" id="run-log-content"></pre>
+  </div>
+  <div id="cards"></div>
+</div>
+
+<!-- ── Lightbox ── -->
+<div id="lightbox" onclick="closeLightbox()"><img id="lightboxImg" src="" alt=""></div>
