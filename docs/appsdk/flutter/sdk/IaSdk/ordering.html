@@ -75,7 +75,7 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">IaBaseOrdering get ordering {
   if (_ordering == null) {
-    throw _moduleNotInitializedError;
+    throw _moduleNotInitializedError(IaBaseModule.ordering);
   }
   return _ordering!;
 }</code></pre>

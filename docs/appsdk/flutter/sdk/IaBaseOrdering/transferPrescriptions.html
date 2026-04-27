@@ -56,7 +56,7 @@
       
 <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
 <span class="name ">transferPrescriptions</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="transferPrescriptions-param-images"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-typed_data/Uint8List-class.html">Uint8List</a></span>&gt;</span>?</span> <span class="parameter-name">images</span>, </span></li>
-<li><span class="parameter" id="transferPrescriptions-param-pdfs"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-typed_data/Uint8List-class.html">Uint8List</a></span>&gt;</span>?</span> <span class="parameter-name">pdfs</span>, </span></li>
+<li><span class="parameter" id="transferPrescriptions-param-pdfs"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter">(<span class="field">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-typed_data/Uint8List-class.html">Uint8List</a></span> <span class="field-name">data</span>, </span><span class="field"><span class="type-annotation"><a href="../../sdk/IaPrescriptionInsuranceType.html">IaPrescriptionInsuranceType</a></span> <span class="field-name">insuranceType</span>}</span>)</span>&gt;</span>?</span> <span class="parameter-name">pdfs</span>, </span></li>
 <li><span class="parameter" id="transferPrescriptions-param-codes"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">codes</span>, </span></li>
 <li><span class="parameter" id="transferPrescriptions-param-orderId"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">orderId</span>, </span></li>
 </ol>})
@@ -67,6 +67,7 @@
     
 <section class="desc markdown">
   <p>Forwards the specified <code>images</code>, <code>pdfs</code>, or eRezept <code>codes</code> prescription collection to the ia.de backend.</p>
+<p>Each PDF entry is a record containing the binary data and its <a href="../../sdk/IaPrescriptionInsuranceType.html">IaPrescriptionInsuranceType</a>.</p>
 </section>
 
 
@@ -75,7 +76,7 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">Future&lt;void&gt; transferPrescriptions({
   Iterable&lt;Uint8List&gt;? images,
-  Iterable&lt;Uint8List&gt;? pdfs,
+  Iterable&lt;({Uint8List data, IaPrescriptionInsuranceType insuranceType})&gt;? pdfs,
   Iterable&lt;String&gt;? codes,
   String? orderId,
 });</code></pre>

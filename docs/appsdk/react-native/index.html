@@ -1,54 +1,242 @@
-<!DOCTYPE html><html class="default" lang="en" data-base="./"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@ihreapotheken/ia-sdk-react-native - v1.0.0</title><meta name="description" content="Documentation for @ihreapotheken/ia-sdk-react-native"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><a href="index.html" class="title">@ihreapotheken/ia-sdk-react-native - v1.0.0</a><div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/><ul role="listbox" id="tsd-search-results"></ul><div id="tsd-search-status" aria-live="polite" aria-atomic="true"><div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h1>@ihreapotheken/ia-sdk-react-native - v1.0.0</h1></div><div class="tsd-panel tsd-typography"><h1 id="appsdk-react-native-module" class="tsd-anchor-link">AppSDK React Native Module<a href="#appsdk-react-native-module" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><p>React Native <a href="https://reactnative.dev/docs/the-new-architecture/create-module-library">Module</a> project implemented with the <a href="http://ia.de">ia.de</a> AppSDK services.</p>
-<h2 id="1-general-info" class="tsd-anchor-link">1. General Info<a href="#1-general-info" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><hr>
+<!DOCTYPE html><html class="default" lang="en" data-base="./"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>ia-sdk-react-native-monorepo - v1.0.0</title><meta name="description" content="Documentation for ia-sdk-react-native-monorepo"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script><script async src="assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><a href="index.html" class="title">ia-sdk-react-native-monorepo - v1.0.0</a><div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/><ul role="listbox" id="tsd-search-results"></ul><div id="tsd-search-status" aria-live="polite" aria-atomic="true"><div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h1>ia-sdk-react-native-monorepo - v1.0.0</h1></div><div class="tsd-panel tsd-typography"><h1 id="appsdk-react-native-module" class="tsd-anchor-link">AppSDK React Native Module<a href="#appsdk-react-native-module" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1>
+<p>React Native <a href="https://reactnative.dev/docs/the-new-architecture/create-module-library">Module</a> project implemented with the <a href="http://ia.de">ia.de</a> AppSDK services.</p>
+<h2 id="1-general-info" class="tsd-anchor-link">1. General Info<a href="#1-general-info" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<hr>
 <p>The plugin implementation is based on the native AppSDK libraries developed by the <a href="http://ia.de">ia.de</a> team with Kotlin and Swift.</p>
 <p>These native libraries offer both checkout services as well as view components in order to ensure seamless integration
 with any client setup.</p>
 <p>Public API Reference: <a href="https://ihreapotheken.github.io/docs/appsdk/react-native">https://ihreapotheken.github.io/docs/appsdk/react-native</a></p>
-<h2 id="2-developer-setup" class="tsd-anchor-link">2. Developer Setup<a href="#2-developer-setup" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><hr>
+<h2 id="2-developer-setup" class="tsd-anchor-link">2. Developer Setup<a href="#2-developer-setup" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<hr>
 <ul>
-<li><a href="https://reactnative.dev/docs/set-up-your-environment">React Native SDK</a> 0.83.0 and up</li>
-<li><a href="https://docs.npmjs.com/getting-started">Node Package Manager</a> 11.6 and up</li>
-<li><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens">Github Token</a> for native library access</li>
+<li><a href="https://reactnative.dev/docs/set-up-your-environment">React Native SDK</a> 0.81.0 and up</li>
+<li><a href="https://nodejs.org/">Node.js</a> 20.x and up</li>
+<li><a href="https://docs.npmjs.com/getting-started">npm</a> 10.x and up</li>
+<li><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens">GitHub Token</a> for package registry access</li>
 </ul>
-<h2 id="3-platform-support" class="tsd-anchor-link">3. Platform Support<a href="#3-platform-support" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><hr>
+<h2 id="3-platform-support" class="tsd-anchor-link">3. Platform Support<a href="#3-platform-support" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<hr>
 <p>The library is supported on both of the major mobile operating systems, with constraints noted below:</p>
-<h3 id="android" class="tsd-anchor-link">Android<a href="#android" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<h3 id="android" class="tsd-anchor-link">Android<a href="#android" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul>
 <li>Minimum SDK Version: <code>30</code></li>
 <li>Target SDK Version: <code>36</code></li>
 <li>Kotlin <code>2.1.0</code></li>
 <li>Gradle <code>8.12.3</code></li>
 </ul>
-<h3 id="ios" class="tsd-anchor-link">iOS<a href="#ios" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<h3 id="ios" class="tsd-anchor-link">iOS<a href="#ios" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul>
 <li>Minimum iOS Version: <code>15</code></li>
 <li>Xcode: <code>16.0</code></li>
 <li>Swift <code>5.9</code></li>
 </ul>
-<h2 id="4-client-setup" class="tsd-anchor-link">4. Client Setup<a href="#4-client-setup" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><hr>
+<h2 id="4-client-setup" class="tsd-anchor-link">4. Client Setup<a href="#4-client-setup" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<hr>
 <p>For official reference, please see
-<a href="https://reactnative.dev/docs/the-new-architecture/create-module-library">the NativeScript SDK documentation</a>
-on using modules.</p>
-<h3 id="41-add-the-dependency-to-the-file" class="tsd-anchor-link">4.1. Add the dependency to the <code>package.json</code> file<a href="#41-add-the-dependency-to-the-file" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>The library is accessed from Github NPM Package Registry.</p>
-<p>Firstly, the location must be defined in your app's <code>.npmrc</code> file, located in the root of your project:</p>
+<a href="https://reactnative.dev/docs/libraries">the React Native documentation</a>
+on using libraries.</p>
+<h3 id="41-configure-the-github-package-registry" class="tsd-anchor-link">4.1. Configure the GitHub Package Registry<a href="#41-configure-the-github-package-registry" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>The library is accessed from GitHub NPM Package Registry.</p>
+<p>Create a <code>.npmrc</code> file in the root of your project:</p>
 <pre><code><span class="hl-0">@</span><span class="hl-1">ihreapotheken</span><span class="hl-0">:</span><span class="hl-1">registry</span><span class="hl-0">=</span><span class="hl-1">https</span><span class="hl-0">:</span><span class="hl-2">//npm.pkg.github.com</span><br/><span class="hl-2">//npm.pkg.github.com/:_authToken=YOUR_GITHUB_PAT</span>
 </code><button>Copy</button></pre>
 
-<p>Make sure to replace <code>YOUR_GITHUB_PAT</code> with the actual value of your Github Personal Access Token.</p>
-<p>Afterwards, the library can be installed from the command line:</p>
-<pre><code class="sh"><span class="hl-3">npm</span><span class="hl-0"> </span><span class="hl-4">install</span><span class="hl-0"> </span><span class="hl-4">@ihreapotheken/ia-sdk-react-native@VERSION_NUMBER</span>
+<p>Replace <code>YOUR_GITHUB_PAT</code> with your GitHub Personal Access Token.</p>
+<h3 id="42-install-the-packages" class="tsd-anchor-link">4.2. Install the packages<a href="#42-install-the-packages" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>Install the core package and the modules you need:</p>
+<pre><code class="sh"><span class="hl-2"># Core package (required)</span><br/><span class="hl-3">npm</span><span class="hl-0"> </span><span class="hl-4">install</span><span class="hl-0"> </span><span class="hl-4">@ihreapotheken/ia-sdk-core@VERSION</span><br/><br/><span class="hl-2"># Install only the modules you need</span><br/><span class="hl-3">npm</span><span class="hl-0"> </span><span class="hl-4">install</span><span class="hl-0"> </span><span class="hl-4">@ihreapotheken/ia-sdk-cardlink@VERSION</span><br/><span class="hl-3">npm</span><span class="hl-0"> </span><span class="hl-4">install</span><span class="hl-0"> </span><span class="hl-4">@ihreapotheken/ia-sdk-pharmacy@VERSION</span><br/><span class="hl-3">npm</span><span class="hl-0"> </span><span class="hl-4">install</span><span class="hl-0"> </span><span class="hl-4">@ihreapotheken/ia-sdk-ordering@VERSION</span><br/><span class="hl-3">npm</span><span class="hl-0"> </span><span class="hl-4">install</span><span class="hl-0"> </span><span class="hl-4">@ihreapotheken/ia-sdk-prescription@VERSION</span><br/><span class="hl-3">npm</span><span class="hl-0"> </span><span class="hl-4">install</span><span class="hl-0"> </span><span class="hl-4">@ihreapotheken/ia-sdk-over-the-counter@VERSION</span>
 </code><button type="button">Copy</button></pre>
 
-<p>The <code>VERSION_NUMBER</code> value can be referenced from the
-<a href="https://github.com/ihreapotheken/IA-SDK-React-Native/pkgs/npm/ia-sdk-react-native">package release page</a>.</p>
-<h3 id="42-plugin-usage" class="tsd-anchor-link">4.2. Plugin usage<a href="#42-plugin-usage" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>Methods and properties made available as public APIs implemented with the <code>IaSdk</code> object.</p>
-<p>The client setup requires instantiation of this object for usage:</p>
-<pre><code class="ts"><span class="hl-5">import</span><span class="hl-0"> { </span><span class="hl-1">IaSdk</span><span class="hl-0"> } </span><span class="hl-5">from</span><span class="hl-0"> </span><span class="hl-4">&#39;ia-sdk-react-native&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">export</span><span class="hl-0"> </span><span class="hl-6">class</span><span class="hl-0"> </span><span class="hl-7">MyAppClass</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-1">iaSdk</span><span class="hl-0"> = </span><span class="hl-6">new</span><span class="hl-0"> </span><span class="hl-3">IaSdk</span><span class="hl-0">();</span><br/><span class="hl-0">}</span>
+<p>The <code>VERSION</code> value can be referenced from the
+<a href="https://github.com/ihreapotheken/IA-SDK-React-Native/packages">package release page</a>.</p>
+<h3 id="43-ios-permissions" class="tsd-anchor-link">4.3. iOS Permissions<a href="#43-ios-permissions" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>Add the following keys to your <code>Info.plist</code> file based on the modules you use:</p>
+<pre><code class="xml"><!-- Location permission - required for Apofinder (pharmacy finder) module -->
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>Used to show pharmacies nearby.</string>
+
+<!-- Camera permission - required for Prescription (RX) module -->
+<key>NSCameraUsageDescription</key>
+<string>Camera access is needed for prescription upload.</string>
+
+<!-- NFC permission - required for CardLink module -->
+<key>NFCReaderUsageDescription</key>
+<string>NFC is used to read your health insurance card for prescription redemption.</string>
+<key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
+<array>
+    <string>D2760001448000</string>
+    <string>D27600014601</string>
+    <string>D27600014606</string>
+    <string>D27600000102</string>
+    <string>A000000167455349474E</string>
+    <string>D27600006601</string>
+    <string>D27600014602</string>
+    <string>E828BD080FA000000167455349474E</string>
+    <string>E828BD080FD27600006601</string>
+    <string>D27600014603</string>
+</array>
 </code><button type="button">Copy</button></pre>
 
-<p>You may then proceed with API usages on this object:</p>
-<pre><code class="ts"><span class="hl-0">	</span><span class="hl-1">async</span><span class="hl-0"> </span><span class="hl-3">initialize</span><span class="hl-0">() {</span><br/><span class="hl-0">		</span><span class="hl-5">try</span><span class="hl-0"> {</span><br/><span class="hl-0">			</span><span class="hl-5">await</span><span class="hl-0"> </span><span class="hl-6">this</span><span class="hl-0">.</span><span class="hl-1">iaSdk</span><span class="hl-0">.</span><span class="hl-3">initIaSdk</span><span class="hl-0">(</span><br/><span class="hl-0">				</span><span class="hl-1">isAndroid</span><br/><span class="hl-0">					? </span><span class="hl-4">&quot;a1f4b6e3c7d58f9032eeaa1bc02b4f44f9863d1e5c7a49f7d23e0c96b17af5cd&quot;</span><br/><span class="hl-0">					: </span><span class="hl-4">&quot;e9f3d6a12c4b8f75d1e0a93c5b7d6e2f3c1a9b8e7f4d2c0a1b6e5d3f8c7a1b9e&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">				</span><span class="hl-4">&quot;5004&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">				</span><span class="hl-1">IaSdkBase</span><span class="hl-0">.</span><span class="hl-1">ServerEnvironment</span><span class="hl-0">.</span><span class="hl-1">Staging</span><span class="hl-0">,</span><br/><span class="hl-0">			);</span><br/><span class="hl-0">		} </span><span class="hl-5">catch</span><span class="hl-0"> (</span><span class="hl-1">error</span><span class="hl-0">) {</span><br/><span class="hl-0">			</span><span class="hl-1">console</span><span class="hl-0">.</span><span class="hl-3">error</span><span class="hl-0">(</span><span class="hl-4">&quot;Init failed:&quot;</span><span class="hl-0">, </span><span class="hl-1">error</span><span class="hl-0">);</span><br/><span class="hl-0">		}</span><br/><span class="hl-0">	}</span>
+<table>
+<thead>
+<tr>
+<th>Permission</th>
+<th>Key</th>
+<th>Required For</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Location (When In Use)</td>
+<td><code>NSLocationWhenInUseUsageDescription</code></td>
+<td>Apofinder module</td>
+<td>Find nearby pharmacies and get directions</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td><code>NSCameraUsageDescription</code></td>
+<td>Prescription (RX) module</td>
+<td>Scan and upload prescriptions via camera</td>
+</tr>
+<tr>
+<td>NFC</td>
+<td><code>NFCReaderUsageDescription</code></td>
+<td>CardLink module</td>
+<td>Read health insurance cards via NFC for prescription redemption</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> The <code>com.apple.developer.nfc.readersession.iso7816.select-identifiers</code> key with the listed AIDs is required for CardLink to communicate with German health insurance cards (eGK) and related secure messaging protocols.</p>
+<h3 id="44-module-registration-and-initialization" class="tsd-anchor-link">4.4. Module Registration and Initialization<a href="#44-module-registration-and-initialization" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>The SDK uses a modular architecture. Register only the modules you need to minimize app size:</p>
+<pre><code class="typescript"><span class="hl-5">import</span><span class="hl-0"> { </span><span class="hl-1">iaSdk</span><span class="hl-0">, </span><span class="hl-1">ServerEnvironment</span><span class="hl-0"> } </span><span class="hl-5">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@ihreapotheken/ia-sdk-core&#39;</span><span class="hl-0">;</span><br/><span class="hl-5">import</span><span class="hl-0"> { </span><span class="hl-1">IaModuleCardLink</span><span class="hl-0"> } </span><span class="hl-5">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@ihreapotheken/ia-sdk-cardlink&#39;</span><span class="hl-0">;</span><br/><span class="hl-5">import</span><span class="hl-0"> { </span><span class="hl-1">IaModulePharmacy</span><span class="hl-0"> } </span><span class="hl-5">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@ihreapotheken/ia-sdk-pharmacy&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-2">// Register modules before initialization</span><br/><span class="hl-5">await</span><span class="hl-0"> </span><span class="hl-1">iaSdk</span><span class="hl-0">.</span><span class="hl-3">register</span><span class="hl-0">([</span><br/><span class="hl-0">  </span><span class="hl-6">new</span><span class="hl-0"> </span><span class="hl-3">IaModuleCardLink</span><span class="hl-0">(),</span><br/><span class="hl-0">  </span><span class="hl-6">new</span><span class="hl-0"> </span><span class="hl-3">IaModulePharmacy</span><span class="hl-0">(),</span><br/><span class="hl-0">]);</span><br/><br/><span class="hl-2">// Initialize the SDK</span><br/><span class="hl-5">await</span><span class="hl-0"> </span><span class="hl-1">iaSdk</span><span class="hl-0">.</span><span class="hl-3">initialize</span><span class="hl-0">({</span><br/><span class="hl-0">  </span><span class="hl-1">accessKey:</span><span class="hl-0"> </span><span class="hl-4">&#39;your-access-key&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-1">clientId:</span><span class="hl-0"> </span><span class="hl-4">&#39;your-client-id&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-1">serverEnvironment:</span><span class="hl-0"> </span><span class="hl-1">ServerEnvironment</span><span class="hl-0">.</span><span class="hl-1">Staging</span><span class="hl-0">,</span><br/><span class="hl-0">});</span>
 </code><button type="button">Copy</button></pre>
 
+<p>Each module must be registered before calling <code>initialize()</code>. The registration and initialization
+should only be invoked once during the application runtime.</p>
+<h3 id="45-using-the-sdk" class="tsd-anchor-link">4.5. Using the SDK<a href="#45-using-the-sdk" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>After initialization, use the SDK methods:</p>
+<pre><code class="typescript"><span class="hl-5">import</span><span class="hl-0"> { </span><span class="hl-1">iaSdk</span><span class="hl-0">, </span><span class="hl-1">Salutation</span><span class="hl-0">, </span><span class="hl-1">IaBaseModule</span><span class="hl-0"> } </span><span class="hl-5">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@ihreapotheken/ia-sdk-core&#39;</span><span class="hl-0">;</span><br/><span class="hl-5">import</span><span class="hl-0"> </span><span class="hl-5">type</span><span class="hl-0"> { </span><span class="hl-1">IaPharmacyModule</span><span class="hl-0"> } </span><span class="hl-5">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@ihreapotheken/ia-sdk-interface&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-2">// Core methods (always available after initialization)</span><br/><span class="hl-5">await</span><span class="hl-0"> </span><span class="hl-1">iaSdk</span><span class="hl-0">.</span><span class="hl-3">startDashboardActivity</span><span class="hl-0">();</span><br/><span class="hl-5">await</span><span class="hl-0"> </span><span class="hl-1">iaSdk</span><span class="hl-0">.</span><span class="hl-3">logout</span><span class="hl-0">();</span><br/><span class="hl-5">await</span><span class="hl-0"> </span><span class="hl-1">iaSdk</span><span class="hl-0">.</span><span class="hl-3">finishAllActivities</span><span class="hl-0">();</span><br/><br/><span class="hl-2">// Set guest user data for checkout</span><br/><span class="hl-5">await</span><span class="hl-0"> </span><span class="hl-1">iaSdk</span><span class="hl-0">.</span><span class="hl-3">setGuestUserData</span><span class="hl-0">({</span><br/><span class="hl-0">  </span><span class="hl-1">salutation:</span><span class="hl-0"> </span><span class="hl-1">Salutation</span><span class="hl-0">.</span><span class="hl-1">Mr</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-1">firstName:</span><span class="hl-0"> </span><span class="hl-4">&#39;John&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-1">lastName:</span><span class="hl-0"> </span><span class="hl-4">&#39;Doe&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-1">email:</span><span class="hl-0"> </span><span class="hl-4">&#39;john.doe@example.com&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-1">phoneNumberCountryCode:</span><span class="hl-0"> </span><span class="hl-7">49</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-1">phoneNumberWithoutCountryCode:</span><span class="hl-0"> </span><span class="hl-4">&#39;1234567890&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">});</span><br/><br/><span class="hl-2">// Access registered modules</span><br/><span class="hl-5">if</span><span class="hl-0"> (</span><span class="hl-1">iaSdk</span><span class="hl-0">.</span><span class="hl-3">hasModule</span><span class="hl-0">(</span><span class="hl-1">IaBaseModule</span><span class="hl-0">.</span><span class="hl-1">Pharmacy</span><span class="hl-0">)) {</span><br/><span class="hl-0">  </span><span class="hl-6">const</span><span class="hl-0"> </span><span class="hl-8">pharmacy</span><span class="hl-0"> = </span><span class="hl-1">iaSdk</span><span class="hl-0">.</span><span class="hl-3">getModule</span><span class="hl-0">&lt;</span><span class="hl-9">IaPharmacyModule</span><span class="hl-0">&gt;(</span><span class="hl-1">IaBaseModule</span><span class="hl-0">.</span><span class="hl-1">Pharmacy</span><span class="hl-0">);</span><br/><span class="hl-0">  </span><span class="hl-5">await</span><span class="hl-0"> </span><span class="hl-1">pharmacy</span><span class="hl-0">.</span><span class="hl-3">launchPharmacyDetails</span><span class="hl-0">();</span><br/><span class="hl-0">  </span><span class="hl-5">await</span><span class="hl-0"> </span><span class="hl-1">pharmacy</span><span class="hl-0">.</span><span class="hl-3">setPharmacyId</span><span class="hl-0">(</span><span class="hl-4">&#39;pharmacy-123&#39;</span><span class="hl-0">);</span><br/><span class="hl-0">}</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="5-available-modules" class="tsd-anchor-link">5. Available Modules<a href="#5-available-modules" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<hr>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Description</th>
+<th>Key Methods</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@ihreapotheken/ia-sdk-core</code></td>
+<td>Core SDK functionality (required)</td>
+<td><code>initialize()</code>, <code>startDashboardActivity()</code>, <code>logout()</code>, <code>setGuestUserData()</code></td>
+</tr>
+<tr>
+<td><code>@ihreapotheken/ia-sdk-interface</code></td>
+<td>TypeScript interface definitions</td>
+<td>Type exports only</td>
+</tr>
+<tr>
+<td><code>@ihreapotheken/ia-sdk-cardlink</code></td>
+<td>NFC prescription transfer</td>
+<td>Available through dashboard</td>
+</tr>
+<tr>
+<td><code>@ihreapotheken/ia-sdk-pharmacy</code></td>
+<td>Pharmacy details and management</td>
+<td><code>launchPharmacyDetails()</code>, <code>setPharmacyId()</code></td>
+</tr>
+<tr>
+<td><code>@ihreapotheken/ia-sdk-ordering</code></td>
+<td>Order management and checkout</td>
+<td><code>transferPrescriptions()</code>, <code>clearCart()</code>, <code>launchCartScreen()</code></td>
+</tr>
+<tr>
+<td><code>@ihreapotheken/ia-sdk-prescription</code></td>
+<td>Prescription management</td>
+<td>Module registered for UI</td>
+</tr>
+<tr>
+<td><code>@ihreapotheken/ia-sdk-over-the-counter</code></td>
+<td>OTC product browsing</td>
+<td><code>launchProductSearchRoute()</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="module-dependency-graph" class="tsd-anchor-link">Module Dependency Graph<a href="#module-dependency-graph" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<pre><code><span class="hl-0">@</span><span class="hl-1">ihreapotheken</span><span class="hl-0">/</span><span class="hl-1">ia</span><span class="hl-0">-</span><span class="hl-1">sdk</span><span class="hl-0">-</span><span class="hl-3">interface</span><span class="hl-0"> (</span><span class="hl-1">foundation</span><span class="hl-0">)</span><br/><span class="hl-0">    ↑</span><br/><span class="hl-0">    └─── @</span><span class="hl-1">ihreapotheken</span><span class="hl-0">/</span><span class="hl-1">ia</span><span class="hl-0">-</span><span class="hl-1">sdk</span><span class="hl-0">-</span><span class="hl-3">core</span><span class="hl-0"> (</span><span class="hl-1">required</span><span class="hl-0">)</span><br/><span class="hl-0">         ↑ (</span><span class="hl-1">peer</span><span class="hl-0"> </span><span class="hl-1">dependency</span><span class="hl-0">)</span><br/><span class="hl-0">         ├─── @</span><span class="hl-1">ihreapotheken</span><span class="hl-0">/</span><span class="hl-1">ia</span><span class="hl-0">-</span><span class="hl-1">sdk</span><span class="hl-0">-</span><span class="hl-1">cardlink</span><br/><span class="hl-0">         ├─── @</span><span class="hl-1">ihreapotheken</span><span class="hl-0">/</span><span class="hl-1">ia</span><span class="hl-0">-</span><span class="hl-1">sdk</span><span class="hl-0">-</span><span class="hl-1">pharmacy</span><br/><span class="hl-0">         ├─── @</span><span class="hl-1">ihreapotheken</span><span class="hl-0">/</span><span class="hl-1">ia</span><span class="hl-0">-</span><span class="hl-1">sdk</span><span class="hl-0">-</span><span class="hl-1">ordering</span><br/><span class="hl-0">         ├─── @</span><span class="hl-1">ihreapotheken</span><span class="hl-0">/</span><span class="hl-1">ia</span><span class="hl-0">-</span><span class="hl-1">sdk</span><span class="hl-0">-</span><span class="hl-1">over</span><span class="hl-0">-</span><span class="hl-1">the</span><span class="hl-0">-</span><span class="hl-1">counter</span><br/><span class="hl-0">         └─── @</span><span class="hl-1">ihreapotheken</span><span class="hl-0">/</span><span class="hl-1">ia</span><span class="hl-0">-</span><span class="hl-1">sdk</span><span class="hl-0">-</span><span class="hl-1">prescription</span>
+</code><button>Copy</button></pre>
+
+<h2 id="6-example-apps" class="tsd-anchor-link">6. Example Apps<a href="#6-example-apps" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<hr>
+<h3 id="full-example" class="tsd-anchor-link">Full Example<a href="#full-example" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>The <code>example/</code> directory contains a complete example app demonstrating all modules:</p>
+<pre><code class="sh"><span class="hl-3">cd</span><span class="hl-0"> </span><span class="hl-4">example</span><br/><span class="hl-3">yarn</span><span class="hl-0"> </span><span class="hl-4">install</span><br/><span class="hl-3">yarn</span><span class="hl-0"> </span><span class="hl-4">android</span><span class="hl-0">  </span><span class="hl-2"># or yarn ios</span>
+</code><button type="button">Copy</button></pre>
+
+<h3 id="minimal-examples" class="tsd-anchor-link">Minimal Examples<a href="#minimal-examples" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>The <code>test/</code> directory contains minimal example apps for specific use cases:</p>
+<ul>
+<li><code>test/cardlink-demo/</code> - CardLink module only using published packages</li>
+</ul>
+<h2 id="7-project-structure" class="tsd-anchor-link">7. Project Structure<a href="#7-project-structure" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<hr>
+<pre><code><span class="hl-0">├── </span><span class="hl-1">packages</span><span class="hl-0">/              # </span><span class="hl-8">SDK</span><span class="hl-0"> </span><span class="hl-1">modules</span><br/><span class="hl-0">│   ├── </span><span class="hl-1">core</span><span class="hl-0">/             # </span><span class="hl-1">Core</span><span class="hl-0"> </span><span class="hl-8">SDK</span><span class="hl-0"> </span><span class="hl-1">functionality</span><br/><span class="hl-0">│   ├── </span><span class="hl-1">interface</span><span class="hl-0">/        # </span><span class="hl-1">Shared</span><span class="hl-0"> </span><span class="hl-1">TypeScript</span><span class="hl-0"> </span><span class="hl-1">interfaces</span><br/><span class="hl-0">│   ├── </span><span class="hl-1">cardlink</span><span class="hl-0">/         # </span><span class="hl-8">NFC</span><span class="hl-0"> </span><span class="hl-1">prescription</span><span class="hl-0"> </span><span class="hl-1">transfer</span><br/><span class="hl-0">│   ├── </span><span class="hl-1">pharmacy</span><span class="hl-0">/         # </span><span class="hl-1">Pharmacy</span><span class="hl-0"> </span><span class="hl-1">details</span><br/><span class="hl-0">│   ├── </span><span class="hl-1">ordering</span><span class="hl-0">/         # </span><span class="hl-1">Order</span><span class="hl-0"> </span><span class="hl-1">management</span><br/><span class="hl-0">│   ├── </span><span class="hl-1">over</span><span class="hl-0">-</span><span class="hl-1">the</span><span class="hl-0">-</span><span class="hl-1">counter</span><span class="hl-0">/ # </span><span class="hl-8">OTC</span><span class="hl-0"> </span><span class="hl-1">products</span><br/><span class="hl-0">│   └── </span><span class="hl-1">prescription</span><span class="hl-0">/     # </span><span class="hl-1">Prescription</span><span class="hl-0"> </span><span class="hl-1">management</span><br/><span class="hl-0">├── </span><span class="hl-1">example</span><span class="hl-0">/              # </span><span class="hl-1">Full</span><span class="hl-0"> </span><span class="hl-1">example</span><span class="hl-0"> </span><span class="hl-3">app</span><span class="hl-0"> (</span><span class="hl-1">workspace</span><span class="hl-0">)</span><br/><span class="hl-0">└── </span><span class="hl-1">test</span><span class="hl-0">/                 # </span><span class="hl-1">Minimal</span><span class="hl-0"> </span><span class="hl-1">example</span><span class="hl-0"> </span><span class="hl-1">apps</span><br/><span class="hl-0">    └── </span><span class="hl-1">cardlink</span><span class="hl-0">-</span><span class="hl-1">demo</span><span class="hl-0">/    # </span><span class="hl-1">CardLink</span><span class="hl-0"> </span><span class="hl-3">only</span><span class="hl-0"> (</span><span class="hl-1">published</span><span class="hl-0"> </span><span class="hl-1">packages</span><span class="hl-0">)</span>
+</code><button>Copy</button></pre>
+
+<h2 id="8-app-size" class="tsd-anchor-link">8. App Size<a href="#8-app-size" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<hr>
+<p>Example app sizes with CardLink module only:</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Android APK (all architectures)</td>
+<td>~174 MB</td>
+</tr>
+<tr>
+<td>iOS App</td>
+<td>~52 MB</td>
+</tr>
+</tbody>
+</table>
+<p>Note: Android APK size is for all architectures. Play Store delivery uses split APKs (~45-50 MB per device).</p>
+<h2 id="9-related-projects" class="tsd-anchor-link">9. Related Projects<a href="#9-related-projects" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<hr>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/ihreapotheken/IA-SDK-Flutter">IA-SDK-Flutter</a></td>
+<td>Flutter plugin implementation</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ihreapotheken/IA-SDK-Android">IA-SDK-Android</a></td>
+<td>Native Android SDK</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ihreapotheken/IA-SDK-iOS">IA-SDK-iOS</a></td>
+<td>Native iOS SDK</td>
+</tr>
+</tbody>
+</table>
 <hr>
 <p>For further information, please see the
-<a href="https://ihreapotheken.github.io/docs/appsdk/react-native">API reference</a>.</p>
-</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg><h3>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg><h3>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#appsdk-react-native-module"><span>App<wbr/>SDK <wbr/>React <wbr/>Native <wbr/>Module</span></a><ul><li><a href="#1-general-info"><span>1. <wbr/>General <wbr/>Info</span></a></li><li><a href="#2-developer-setup"><span>2. <wbr/>Developer <wbr/>Setup</span></a></li><li><a href="#3-platform-support"><span>3. <wbr/>Platform <wbr/>Support</span></a></li><li><ul><li><a href="#android"><span>Android</span></a></li><li><a href="#ios"><span>i<wbr/>OS</span></a></li></ul></li><li><a href="#4-client-setup"><span>4. <wbr/>Client <wbr/>Setup</span></a></li><li><ul><li><a href="#41-add-the-dependency-to-the-file"><span>4.1. <wbr/>Add the dependency to the  file</span></a></li><li><a href="#42-plugin-usage"><span>4.2. <wbr/>Plugin usage</span></a></li></ul></li></ul></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html">@ihreapotheken/ia-sdk-react-native - v1.0.0</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"><li>Loading...</li></ul></nav></div></div></div><footer></footer><div class="overlay"></div></body></html>
+<a href="https://ihreapotheken.github.io/docs/appsdk/react-native">API reference</a>
+and <a href="https://ihreapotheken.github.io/docs/appsdk/common/usage-and-testing">Usage and Testing documentation</a>.</p>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg><h3>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg><h3>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#appsdk-react-native-module"><span>App<wbr/>SDK <wbr/>React <wbr/>Native <wbr/>Module</span></a><ul><li><a href="#1-general-info"><span>1. <wbr/>General <wbr/>Info</span></a></li><li><a href="#2-developer-setup"><span>2. <wbr/>Developer <wbr/>Setup</span></a></li><li><a href="#3-platform-support"><span>3. <wbr/>Platform <wbr/>Support</span></a></li><li><ul><li><a href="#android"><span>Android</span></a></li><li><a href="#ios"><span>i<wbr/>OS</span></a></li></ul></li><li><a href="#4-client-setup"><span>4. <wbr/>Client <wbr/>Setup</span></a></li><li><ul><li><a href="#41-configure-the-github-package-registry"><span>4.1. <wbr/>Configure the <wbr/>Git<wbr/>Hub <wbr/>Package <wbr/>Registry</span></a></li><li><a href="#42-install-the-packages"><span>4.2. <wbr/>Install the packages</span></a></li><li><a href="#43-ios-permissions"><span>4.3. i<wbr/>OS <wbr/>Permissions</span></a></li><li><a href="#44-module-registration-and-initialization"><span>4.4. <wbr/>Module <wbr/>Registration and <wbr/>Initialization</span></a></li><li><a href="#45-using-the-sdk"><span>4.5. <wbr/>Using the <wbr/>SDK</span></a></li></ul></li><li><a href="#5-available-modules"><span>5. <wbr/>Available <wbr/>Modules</span></a></li><li><ul><li><a href="#module-dependency-graph"><span>Module <wbr/>Dependency <wbr/>Graph</span></a></li></ul></li><li><a href="#6-example-apps"><span>6. <wbr/>Example <wbr/>Apps</span></a></li><li><ul><li><a href="#full-example"><span>Full <wbr/>Example</span></a></li><li><a href="#minimal-examples"><span>Minimal <wbr/>Examples</span></a></li></ul></li><li><a href="#7-project-structure"><span>7. <wbr/>Project <wbr/>Structure</span></a></li><li><a href="#8-app-size"><span>8. <wbr/>App <wbr/>Size</span></a></li><li><a href="#9-related-projects"><span>9. <wbr/>Related <wbr/>Projects</span></a></li></ul></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html">ia-sdk-react-native-monorepo - v1.0.0</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"><li>Loading...</li></ul></nav></div></div></div><footer></footer><div class="overlay"></div></body></html>

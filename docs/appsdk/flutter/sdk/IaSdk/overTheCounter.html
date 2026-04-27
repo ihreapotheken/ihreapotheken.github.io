@@ -75,7 +75,7 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">IaBaseOverTheCounter get overTheCounter {
   if (_overTheCounter == null) {
-    throw _moduleNotInitializedError;
+    throw _moduleNotInitializedError(IaBaseModule.overTheCounter);
   }
   return _overTheCounter!;
 }</code></pre>

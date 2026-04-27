@@ -75,7 +75,7 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">IaBasePrescription get prescription {
   if (_prescription == null) {
-    throw _moduleNotInitializedError;
+    throw _moduleNotInitializedError(IaBaseModule.prescription);
   }
   return _prescription!;
 }</code></pre>

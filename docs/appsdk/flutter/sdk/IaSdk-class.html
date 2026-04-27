@@ -90,6 +90,18 @@
 
 </dd>
 
+        <dt id="onApofinderDidChangePharmacy" class="property">
+  <span class="name"><a href="../sdk/IaSdk/onApofinderDidChangePharmacy.html">onApofinderDidChangePharmacy</a></span>
+  <span class="signature">&#8596; void Function<span class="signature">({<span class="parameter" id="param-isFromPrerequisites"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isFromPrerequisites</span>, </span><span class="parameter" id="param-pharmacyId"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">pharmacyId</span></span>})</span>?</span>
+  
+
+</dt>
+<dd>
+  Called when the user changes their pharmacy via the Apofinder flow.
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
         <dt id="onSdkWillNavigateToTarget" class="property">
   <span class="name"><a href="../sdk/IaSdk/onSdkWillNavigateToTarget.html">onSdkWillNavigateToTarget</a></span>
   <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>&gt;</span> Function<span class="signature">(<span class="parameter" id="param-navigationTarget"><span class="type-annotation"><a href="../sdk/IaSdkNavigationTarget.html">IaSdkNavigationTarget</a></span> <span class="parameter-name">navigationTarget</span></span>)</span>?</span>
@@ -171,6 +183,32 @@
       id="instance-methods">
     <h2>Methods</h2>
     <dl class="callables">
+        <dt id="cleanCache" class="callable">
+  <span class="name"><a href="../sdk/IaSdk/cleanCache.html">cleanCache</a></span><span class="signature">(<wbr>{<span class="parameter" id="cleanCache-param-initialization"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">initialization</span> = <span class="default-value">false</span>, </span><span class="parameter" id="cleanCache-param-prerequisites"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">prerequisites</span> = <span class="default-value">false</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Clears cached SDK data for initialization and/or prerequisites.
+  
+
+</dd>
+
+        <dt id="deleteUser" class="callable">
+  <span class="name"><a href="../sdk/IaSdk/deleteUser.html">deleteUser</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Deletes the user account from the SDK.
+  
+
+</dd>
+
         <dt id="finishAllActivities" class="callable">
   <span class="name"><a href="../sdk/IaSdk/finishAllActivities.html">finishAllActivities</a></span><span class="signature">(<wbr>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
@@ -184,6 +222,19 @@
 
 </dd>
 
+        <dt id="getEnvironment" class="callable">
+  <span class="name"><a href="../sdk/IaSdk/getEnvironment.html">getEnvironment</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../sdk/IaSdkConfigurationServerEnvironment.html">IaSdkConfigurationServerEnvironment</a>?</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns the current server environment.
+  
+
+</dd>
+
         <dt id="initialize" class="callable">
   <span class="name"><a href="../sdk/IaSdk/initialize.html">initialize</a></span><span class="signature">(<wbr>{<span class="parameter" id="initialize-param-config"><span>required</span> <span class="type-annotation"><a href="../sdk/IaSdkConfiguration-class.html">IaSdkConfiguration</a></span> <span class="parameter-name">config</span></span>})
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
@@ -193,6 +244,19 @@
 </dt>
 <dd>
   Allocates the resources required for the AppSDK usage.
+  
+
+</dd>
+
+        <dt id="isInitialized" class="callable">
+  <span class="name"><a href="../sdk/IaSdk/isInitialized.html">isInitialized</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns <code>true</code> if the SDK has been successfully initialized.
   
 
 </dd>
@@ -272,6 +336,19 @@
 <dd class="inherited">
   A string representation of this object.
   <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="transferSDKv1UserData" class="callable">
+  <span class="name"><a href="../sdk/IaSdk/transferSDKv1UserData.html">transferSDKv1UserData</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Transfers user data from SDK v1 to the current SDK.
+  
 
 </dd>
 

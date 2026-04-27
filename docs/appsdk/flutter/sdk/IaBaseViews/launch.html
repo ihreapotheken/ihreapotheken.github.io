@@ -71,9 +71,9 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">Future&lt;void&gt; launch() async {
   return await IaBaseMethods._channel.invokeMethod(
-    _launchMethodId,
+    launchMethodId,
     {
-      _launchMethodArgId: Platform.isAndroid ? viewId.substring(0, 1).toUpperCase() + viewId.substring(1) : viewId,
+      launchMethodArgId: Platform.isAndroid ? viewId.substring(0, 1).toUpperCase() + viewId.substring(1) : viewId,
     },
   );
 }</code></pre>

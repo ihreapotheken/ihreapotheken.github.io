@@ -75,7 +75,7 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">IaBasePharmacy get pharmacy {
   if (_pharmacy == null) {
-    throw _moduleNotInitializedError;
+    throw _moduleNotInitializedError(IaBaseModule.pharmacyDetails);
   }
   return _pharmacy!;
 }</code></pre>

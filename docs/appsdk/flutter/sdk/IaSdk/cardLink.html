@@ -75,7 +75,7 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">IaBaseCardLink get cardLink {
   if (_cardLink == null) {
-    throw _moduleNotInitializedError;
+    throw _moduleNotInitializedError(IaBaseModule.cardLink);
   }
   return _cardLink!;
 }</code></pre>

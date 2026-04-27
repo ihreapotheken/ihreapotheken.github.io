@@ -99,7 +99,65 @@ dependencies:
 <p>You may reference specific branch, tag, or commit hash by specifying the <code>ref</code> field.</p>
 <p>Version reference numbers can be found by reviewing
 <a href="https://github.com/ihreapotheken/IA-SDK-Flutter/tags">the package Github repository tags</a>.</p>
-<h3 id="42-plugin-usage">4.2. Plugin usage</h3>
+<h3 id="42-ios-permissions">4.2. iOS Permissions</h3>
+<p>Add the following keys to your <code>Info.plist</code> file based on the modules you use:</p>
+<pre class="language-xml"><code class="language-xml">&lt;!-- Location permission - required for Apofinder (pharmacy finder) module --&gt;
+&lt;key&gt;NSLocationWhenInUseUsageDescription&lt;/key&gt;
+&lt;string&gt;Used to show pharmacies nearby.&lt;/string&gt;
+
+&lt;!-- Camera permission - required for Prescription (RX) module --&gt;
+&lt;key&gt;NSCameraUsageDescription&lt;/key&gt;
+&lt;string&gt;Camera access is needed for prescription upload.&lt;/string&gt;
+
+&lt;!-- NFC permission - required for CardLink module --&gt;
+&lt;key&gt;NFCReaderUsageDescription&lt;/key&gt;
+&lt;string&gt;NFC is used to read your health insurance card for prescription redemption.&lt;/string&gt;
+&lt;key&gt;com.apple.developer.nfc.readersession.iso7816.select-identifiers&lt;/key&gt;
+&lt;array&gt;
+    &lt;string&gt;D2760001448000&lt;/string&gt;
+    &lt;string&gt;D27600014601&lt;/string&gt;
+    &lt;string&gt;D27600014606&lt;/string&gt;
+    &lt;string&gt;D27600000102&lt;/string&gt;
+    &lt;string&gt;A000000167455349474E&lt;/string&gt;
+    &lt;string&gt;D27600006601&lt;/string&gt;
+    &lt;string&gt;D27600014602&lt;/string&gt;
+    &lt;string&gt;E828BD080FA000000167455349474E&lt;/string&gt;
+    &lt;string&gt;E828BD080FD27600006601&lt;/string&gt;
+    &lt;string&gt;D27600014603&lt;/string&gt;
+&lt;/array&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Permission</th>
+<th>Key</th>
+<th>Required For</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Location (When In Use)</td>
+<td><code>NSLocationWhenInUseUsageDescription</code></td>
+<td>Apofinder module</td>
+<td>Find nearby pharmacies and get directions</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td><code>NSCameraUsageDescription</code></td>
+<td>Prescription (RX) module</td>
+<td>Scan and upload prescriptions via camera</td>
+</tr>
+<tr>
+<td>NFC</td>
+<td><code>NFCReaderUsageDescription</code></td>
+<td>CardLink module</td>
+<td>Read health insurance cards via NFC for prescription redemption</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> The <code>com.apple.developer.nfc.readersession.iso7816.select-identifiers</code> key with the listed AIDs is required for CardLink to communicate with German health insurance cards (eGK) and related secure messaging protocols.</p>
+<h3 id="43-plugin-usage">4.3. Plugin usage</h3>
 <p>Methods and properties made available as public APIs implemented with the <code>IaSdk.instance</code> object.</p>
 <p>The client setup requires module registration and invocation of the <code>initialize</code> method for usage:</p>
 <pre class="language-dart"><code class="language-dart">import 'package:appsdk_v2_flutter_plugin/sdk.dart';
@@ -121,7 +179,7 @@ Future&lt;void&gt; initIaSdk() {
 }
 </code></pre>
 <p>Each of the two methods are expected to only be invoked once during the application runtime.</p>
-<h3 id="43-module-registration">4.3. Module registration</h3>
+<h3 id="44-module-registration">4.4. Module registration</h3>
 <p>Each of the individual native modules are available for installation from the
 <a href="https://github.com/ihreapotheken/IA-SDK-Flutter">modules</a> directory:</p>
 <pre class="language-yaml"><code class="language-yaml"># pubspec.yaml
@@ -170,7 +228,8 @@ IaSdk.instance.cardLink;
 <p>For the list of available modules, please visit the <a href="https://github.com/ihreapotheken/IA-SDK-Flutter">modules</a> directory.</p>
 <hr>
 <p>For further information, please see the
-<a href="https://ihreapotheken.github.io/docs/appsdk/flutter">API reference</a>.</p>
+<a href="https://ihreapotheken.github.io/docs/appsdk/flutter">API reference</a>
+and <a href="https://ihreapotheken.github.io/docs/appsdk/common/usage-and-testing">Usage and Testing documentation</a>.</p>
 </section>
 
 
